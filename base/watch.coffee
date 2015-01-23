@@ -3,28 +3,17 @@ path        = require 'path'
 reload      = require 'gulp-livereload'
 gaze        = require 'gaze'
 gutil       = require 'gulp-util'
-reload      = require 'gulp-livereload'
 
-config      = require '../projects'
-projects    = config.projects
+projects    = require '../projects'
 
 module.exports = (proj) ->
     gulp.task "#{proj}-watch", ["#{proj}-less"], ->
-        htmlPath = config.baseHtml
-        phpPath = config.basePhp
 
         # CHANGES PROCESS DIR SO GLOB /**/* WORKS FINE
-        process.chdir(config.basePath + proj)
-
-        if projects[proj].cssPath isnt undefined
-            lessPath = "#{projects[proj].cssPath}"
-        else if projects[proj].less is 'dev'
-            lessPath = "#{config.baseLessDev}"
-        else
-            lessPath = "#{config.baseLessDes}"
+        process.chdir(projects[proj].base)
 
         # LESS Watcher
-        gaze "#{lessPath}**/*.less", {dot: false}, ->
+        gaze "#{projects[proj].less}**/*.less", {dot: false}, ->
             @on 'changed', ->
                 gulp.start "#{proj}-less"
 
@@ -35,13 +24,13 @@ module.exports = (proj) ->
 
         # HTML Watcher
         if projects[proj].html
-            gaze "#{htmlPath}**/*.html", ->
+            gaze "#{projects[proj].html}**/*.html", ->
                 @on 'changed', reload.changed
         # HTML Watcher
 
         # PHP Watcher
         if projects[proj].php
-            gaze ["#{phpPath}models/**/*.php", "#{phpPath}controllers/**/*.php", "#{phpPath}views/**/*.phtml"], ->
+            gaze ["#{projects[proj].php}models/**/*.php", "#{projects[proj].php}controllers/**/*.php", "#{projects[proj].php}views/**/*.phtml"], ->
                 @on 'changed', reload.changed
         # PHP Watcher
 

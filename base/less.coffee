@@ -13,7 +13,7 @@ projects        = require '../projects'
 module.exports = (proj) ->
 
     gulp.task "#{proj}-less", ->
-        gulp.src "#{projects[path].less}style.less"
+        gulp.src "#{projects[proj].less}style.less"
 
             # ERRORS HANDLER
             .pipe plumber (error) ->

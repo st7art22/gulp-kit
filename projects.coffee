@@ -1,32 +1,19 @@
 _ = require 'underscore'
 
-basePath = 'C:/proj/'
+basePath = 'C:/web/proj/domains/'
+# basePath = 'C:/proj/'
 baseHtml = 'trunk/design/markup/'
 basePhp = 'trunk/www/local/zend/'
 baseLessDev = 'trunk/www/local/css/'
 baseLessDes = 'trunk/design/markup/css/'
 
 projects =
-    handy:
-        active: false
-        less: 'dev'
-
-    proburo:
-        active: false
-        less: 'dev'
-
-    napopravku:
+    ortodont:
         active: true
-        cssPath: 'local/css/'
+        less: 'des'
 
-    europatrc:
-        active: false
-        less: 'dev'
-
-    razv:
-        active: false
-        less: 'dev'
-
+# Setting up routes and active projects object
+# 32123123
 active = {}
 _.each projects, (proj, name) ->
     if !proj.active then return
