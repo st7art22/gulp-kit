@@ -1,14 +1,14 @@
 gulp        = require 'gulp'
 getFiles    = require './getFiles'
-config      = require './projects'
+projects    = require './projects'
+_           = require 'underscore'
+
+console.log(projects);
 
 tasksBase = getFiles 'base'
 
 tasks = []
-for proj of config.projects
-
-    if !config.projects[proj].active then continue
-
+for proj of projects
     require('./base/less')(proj)
     require('./base/watch')(proj)
 
