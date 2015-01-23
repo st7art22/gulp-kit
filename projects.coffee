@@ -13,7 +13,6 @@ projects =
         less: 'des'
 
 # Setting up routes and active projects object
-# 32123123
 active = {}
 _.each projects, (proj, name) ->
     if !proj.active then return
