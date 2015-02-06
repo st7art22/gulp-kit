@@ -7,34 +7,8 @@ var baseLessDev = 'trunk/www/local/css/';
 var baseLessDes = 'trunk/design/markup/css/';
 
 var projects = {
-    handy: {
+    test: {
         active: false,
-        less: 'dev'
-    },
-
-    proburo: {
-        active: false,
-        less: 'dev'
-    },
-
-    napopravku: {
-        active: false,
-        cssPath: 'local/css/'
-    },
-
-    europatrc: {
-        active: false,
-        less: 'dev'
-    },
-
-    razv: {
-        active: false,
-        less: 'dev'
-    },
-
-    ralf: {
-        active: true,
-        cssPath: 'branches/development/www/local/css/',
         less: 'dev'
     }
 };
