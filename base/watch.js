@@ -4,17 +4,20 @@ var reload      = require('gulp-livereload');
 var gaze        = require('gaze');
 var gutil       = require('gulp-util');
 var reload      = require('gulp-livereload');
+var _           = require('underscore');
+var assign      = require('object-assign');
 
 var projects    = require('../projects');
+var running = false;
 
 module.exports = function(proj) {
     gulp.task(proj + "-watch", [proj + "-less"], function() {
 
         // CHANGES PROCESS DIR SO GLOB /**/* WORKS FINE
-        process.chdir(projects[proj].base);
+        var gazeParams = {cwd: projects[proj].base};
 
         // LESS Watcher
-        gaze(projects[proj].less + "**/*.less", {dot: false}, function() {
+        gaze(projects[proj].less + "**/*.less", gazeParams, function() {
             this.on('changed', function() {
                 gulp.start(proj + "-less");
             });
@@ -24,15 +27,16 @@ module.exports = function(proj) {
                 gulp.start(proj + "-less");
             });
         });
-        // LESS Watcher
 
-        // HTML Watcher
-        if (projects[proj].html) {
-            gaze(htmlPath + "**/*.html", function(){
-                this.on('changed', reload.changed);
+        // IMG Watcher
+        if (projects[proj].img) {
+            gaze(projects[proj].img + "**/*.png", gazeParams, function(error){
+                this.on('added', function(filepath) {
+                    gutil.log(gutil.colors.green(path.basename(filepath) + " was added"));
+                    gulp.start(proj + "-img");
+                });
             });
         }
-        // HTML Watcher
     });
 };
 

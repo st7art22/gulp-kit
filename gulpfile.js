@@ -13,6 +13,10 @@ _.each(projects, function(i, proj) {
     require('./base/less')(proj);
     require('./base/watch')(proj);
 
+    if (projects[proj].img) {
+        require('./base/img')(proj);
+    }
+
     tasks.push(proj + "-watch");
 });
 

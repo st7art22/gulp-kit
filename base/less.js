@@ -11,8 +11,9 @@ var gulpif          = require('gulp-if');
 var projects        = require('../projects');
 
 module.exports = function(proj) {
+    var path = projects[proj].base + projects[proj].less;
     gulp.task(proj + "-less", function() {
-        gulp.src(projects[proj].less + "style.less")
+        gulp.src(path + "style.less")
 
             // ERRORS HANDLER
             .pipe(plumber(function(error) {
@@ -27,7 +28,7 @@ module.exports = function(proj) {
             .pipe(minifycss())
            // .pipe gulpif(projects[proj].sourcemaps, sourcemaps.write())
 
-            .pipe(gulp.dest(projects[proj].less))
+            .pipe(gulp.dest(path))
             .pipe(reload());
     });
 }

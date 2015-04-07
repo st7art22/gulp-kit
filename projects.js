@@ -1,15 +1,15 @@
 var _ = require('underscore');
 
-var basePath    = 'C:/proj/';
-var baseHtml    = 'trunk/design/markup/';
-var basePhp     = 'trunk/www/local/zend/';
+var basePath    = 'C:/web/';
 var baseLessDev = 'trunk/www/local/css/';
 var baseLessDes = 'trunk/design/markup/css/';
+var imgDes      = 'trunk/design/markup/images/';
 
 var projects = {
     test: {
-        active: false,
-        less: 'dev'
+        active: true,
+        less: 'des',
+        img: true
     }
 };
 
@@ -17,31 +17,21 @@ var active = {};
 _.each(projects, function(proj, name) {
     if (!proj.active) return;
 
-    var base = basePath + name + '/',
-        path,
-        html;
+    active[name] = {};
+    active[name].base = basePath + name + '/';
 
     if (proj.cssPath !== undefined) {
-        path = base + proj.cssPath;
+        active[name].less = proj.cssPath;
     }
     else if (proj.less === 'dev') {
-        path = base + baseLessDev;
+        active[name].less = baseLessDev;
     }
     else {
-        path = base + baseLessDes;
+        active[name].less = baseLessDes;
     }
 
-    if (proj.html !== undefined && proj.html) {
-        html = baseHtml;
-    }
-    else {
-        html = false;
-    }
-
-    active[name] = {
-        base: base,
-        html: html,
-        less: path
+    if (proj.img) {
+        active[name].img = imgDes;
     };
 });
 
