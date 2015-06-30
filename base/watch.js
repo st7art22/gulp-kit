@@ -8,10 +8,9 @@ var _           = require('underscore');
 var assign      = require('object-assign');
 
 var projects    = require('../projects');
-var running = false;
 
 module.exports = function(proj) {
-    gulp.task(proj + "-watch", [proj + "-less"], function() {
+    gulp.task(proj + "-watch", [proj + "-less", proj + "-img"], function() {
 
         // CHANGES PROCESS DIR SO GLOB /**/* WORKS FINE
         var gazeParams = {cwd: projects[proj].base};

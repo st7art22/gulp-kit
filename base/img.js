@@ -1,6 +1,7 @@
 var gulp            = require('gulp');
 var imagemin        = require('gulp-imagemin');
 var pngquant        = require('imagemin-pngquant');
+var cache           = require('gulp-cached');
 
 var projects        = require('../projects');
 
@@ -9,6 +10,7 @@ module.exports = function(proj) {
 
     gulp.task(proj + "-img", function() {
         gulp.src(path + '**/*.png')
+            .pipe(cache('min'))
             .pipe(imagemin({
                 progressive: true,
                 use: [pngquant()]
