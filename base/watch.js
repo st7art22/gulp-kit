@@ -10,9 +10,13 @@ var assign      = require('object-assign');
 var projects    = require('../projects');
 
 module.exports = function(proj) {
-    gulp.task(proj + "-watch", [proj + "-less", proj + "-img"], function() {
+    var start = [proj + "-less"];
 
-        // CHANGES PROCESS DIR SO GLOB /**/* WORKS FINE
+    if (projects[proj].img) {
+        start.push(proj + "-img");
+    }
+
+    gulp.task(proj + "-watch", start, function() {
         var gazeParams = {cwd: projects[proj].base};
 
         // LESS Watcher
@@ -20,7 +24,6 @@ module.exports = function(proj) {
             this.on('changed', function() {
                 gulp.start(proj + "-less");
             });
-
             this.on('added', function(filepath) {
                 gutil.log(gutil.colors.green(path.basename(filepath) + " was added"));
                 gulp.start(proj + "-less");
