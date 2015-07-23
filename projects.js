@@ -1,15 +1,15 @@
 var _ = require('underscore');
 
-var basePath    = 'C:/web/';
+var basePath    = 'C:/proj/';
 var baseLessDev = 'trunk/www/local/css/';
 var baseLessDes = 'trunk/design/markup/css/';
 var imgDes      = 'trunk/design/markup/images/';
+var imgDev      = 'trunk/www/local/images/';
 
 var projects = {
     test: {
-        active: true,
-        less: 'des',
-        img: true
+        active: false,
+        less: 'dev'
     }
 };
 
@@ -30,9 +30,11 @@ _.each(projects, function(proj, name) {
         active[name].less = baseLessDes;
     }
 
-    if (proj.img) {
+    if (proj.img === 'dev') {
+        active[name].img = imgDev;
+    } else if(proj.img === 'des') {
         active[name].img = imgDes;
-    };
+    }
 });
 
 

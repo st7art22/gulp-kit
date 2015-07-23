@@ -22,10 +22,10 @@ module.exports = function(proj) {
             }))
 
             .pipe(less())
-            // .pipe(prefix(['last 3 versions']))
+            .pipe(prefix(['last 3 versions']))
             .pipe(minifycss())
 
             .pipe(gulp.dest(path))
             .pipe(reload());
     });
-}
+};

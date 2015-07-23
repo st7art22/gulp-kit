@@ -3,7 +3,6 @@ var path        = require('path');
 var reload      = require('gulp-livereload');
 var gaze        = require('gaze');
 var gutil       = require('gulp-util');
-var reload      = require('gulp-livereload');
 var _           = require('underscore');
 var assign      = require('object-assign');
 
@@ -16,8 +15,9 @@ module.exports = function(proj) {
         start.push(proj + "-img");
     }
 
+    var gazeParams = {cwd: projects[proj].base};
+
     gulp.task(proj + "-watch", start, function() {
-        var gazeParams = {cwd: projects[proj].base};
 
         // LESS Watcher
         gaze(projects[proj].less + "**/*.less", gazeParams, function() {
@@ -39,6 +39,8 @@ module.exports = function(proj) {
                 });
             });
         }
+
+        reload.listen();
     });
 };
 
