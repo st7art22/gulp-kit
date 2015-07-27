@@ -20,4 +20,4 @@ projectName: {
 }
 ```
 
-Note that you need to set a folder name as a key.
+Note that you need to set a project folder name as a key.
