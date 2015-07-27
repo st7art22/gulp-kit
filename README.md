@@ -1,7 +1,7 @@
 # gulp-kit
 
 Simple gulp task-runner that watches over several projects.
-All projects have to be in the same folder though (works fine w/ simlinks) like:
+All projects have to be in the same folder though (works fine w/ simlinks):
 ```
 /projects-folder/
     project1/
