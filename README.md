@@ -7,7 +7,7 @@ All you need is to set a config object for each of your projects in projects.js 
 test: {
     active: true,
     aprefix: 'last 3 versions', /* defaults to 'last 3 versions' if empty */
-    img: path/to/images/folder/
-    less: path/to/less/folder/
+    img: 'path/to/images/folder/',
+    less: 'path/to/less/folder/'
 }
 ```
