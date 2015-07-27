@@ -10,4 +10,4 @@ test: {
     img: path/to/images/folder/
     less: path/to/less/folder/
 }
-```javascript
+```
