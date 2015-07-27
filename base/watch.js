@@ -1,21 +1,18 @@
-var gulp        = require('gulp');
-var path        = require('path');
-var reload      = require('gulp-livereload');
-var gaze        = require('gaze');
-var gutil       = require('gulp-util');
-var _           = require('underscore');
-var assign      = require('object-assign');
+var gulp   = require('gulp');
+var path   = require('path');
+var reload = require('gulp-livereload');
+var gaze   = require('gaze');
+var gutil  = require('gulp-util');
 
-var projects    = require('../projects');
+var config   = require('../config');
+var projects = config.projects;
 
 module.exports = function(proj) {
-    var start = [proj + "-less"];
-
-    if (projects[proj].img) {
-        start.push(proj + "-img");
-    }
-
     var gazeParams = {cwd: projects[proj].base};
+
+    //var start is for tasks that '-watch' will start
+    var start = [proj + "-less"];
+    if (projects[proj].img) { start.push(proj + "-img"); }
 
     gulp.task(proj + "-watch", start, function() {
 
@@ -32,7 +29,7 @@ module.exports = function(proj) {
 
         // IMG Watcher
         if (projects[proj].img) {
-            gaze(projects[proj].img + "**/*.png", gazeParams, function(error){
+            gaze(projects[proj].img + "**/*.png", gazeParams, function(error) {
                 this.on('added', function(filepath) {
                     gutil.log(gutil.colors.green(path.basename(filepath) + " was added"));
                     gulp.start(proj + "-img");

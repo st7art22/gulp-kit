@@ -1,43 +1,14 @@
-var _ = require('underscore');
+var lessPathFirst  = 'path/to/less/';
+var lessPathSecond = 'path/to/less-2/';
 
-var basePath    = 'C:/proj/';
-var baseLessDev = 'trunk/www/local/css/';
-var baseLessDes = 'trunk/design/markup/css/';
-var imgDes      = 'trunk/design/markup/images/';
-var imgDev      = 'trunk/www/local/images/';
+var imgPathFirst  = 'path/to/img/';
+var imgPathSecond = 'path/to/img-2/';
 
-var projects = {
+module.exports = {
     test: {
-        active: false,
-        less: 'dev'
+        active: true,
+        aprefix: 'last 3 versions', /* defaults to 'last 3 versions' if empty */
+        img: false, /* path/to/images/folder/ */
+        less: lessPathFirst /*path/to/less/folder/*/
     }
 };
-
-var active = {};
-_.each(projects, function(proj, name) {
-    if (!proj.active) return;
-
-    active[name] = {};
-    active[name].base = basePath + name + '/';
-
-    if (proj.cssPath !== undefined) {
-        active[name].less = proj.cssPath;
-    }
-    else if (proj.less === 'dev') {
-        active[name].less = baseLessDev;
-    }
-    else {
-        active[name].less = baseLessDes;
-    }
-
-    if (proj.img === 'dev') {
-        active[name].img = imgDev;
-    } else if(proj.img === 'des') {
-        active[name].img = imgDes;
-    }
-});
-
-
-module.exports = active;
-
-
