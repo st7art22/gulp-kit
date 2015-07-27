@@ -10,7 +10,7 @@ All projects have to be in the same folder though (works fine w/ symlinks):
     ...
 ```
 
-You need is to set a config object for each of your projects in projects.js like so
+You need to set a config object for each of your projects in projects.js like so
 ```javascript
 projectName: {
     active: true,
